@@ -1,11 +1,9 @@
-workspace:
-  base: /build
+kind: pipeline
+name: default
 
-pipeline:
-
-  build-image:
-    image: docker
-    commands:      
-      - docker build . -t ciplayground:${DRONE_BUILD_NUMBER}
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+steps:
+- name: test
+  image: maven:3-jdk-10
+  commands:
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+  - mvn test -B
