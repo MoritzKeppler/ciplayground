@@ -1,0 +1,11 @@
+workspace:
+  base: /build
+
+pipeline:
+
+  build-image:
+    image: docker
+    commands:      
+      - docker build . -t ciplayground:${DRONE_BUILD_NUMBER}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
