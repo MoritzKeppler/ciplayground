@@ -7,6 +7,8 @@ steps:
   settings:    
     repo: registry.example.com/example-project
     tags: ${DRONE_COMMIT_SHA}
+    username: sdsd
+    password: fdsfdf
     cache: true
     build_args:
     - COMMIT_SHA=${DRONE_COMMIT_SHA}
