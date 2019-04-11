@@ -1,3 +1,3 @@
 FROM scratch
-ADD README.MD /
+ADD README.md /
 CMD ["/bin/sh"]
