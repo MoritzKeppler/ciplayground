@@ -1,0 +1,25 @@
+name: Docker Image CI
+
+on:
+  workflow_dispatch:
+
+permissions:
+  # This is required for requesting the OIDC token
+  id-token: write
+  # This is required for actions/checkout
+  contents: read
+jobs:
+  build:  
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: jfrog/setup-jfrog-cli@v4
+      env:
+            JF_URL: https://trialp6t23b.jfrog.io 
+      with:
+            oidc-provider-name: setup-jfrog-cli 
+    - name: Run JFrog CLI
+      run: |
+          # Ping the server
+          jf rt ping
